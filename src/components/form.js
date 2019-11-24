@@ -94,6 +94,7 @@ class Form extends Component {
                     <Text style={{ color: '#0fbcf9' }}>Email</Text>
                     <TextInput
                         style={styles.input}
+                        keyboardType="email-address"
                         placeholder='Masukan Email'
                         onChangeText={(text) => { this.props.onchange('email', text) }}
                     >
