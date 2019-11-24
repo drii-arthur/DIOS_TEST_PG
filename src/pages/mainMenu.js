@@ -3,45 +3,30 @@ import { View, Text, StyleSheet, StatusBar, Dimensions, ImageBackground, TextInp
 import Icon from 'react-native-vector-icons/Ionicons'
 import FAB from 'react-native-fab'
 import Card from '../components/card'
+import axios from 'axios'
 
 const { height, width } = Dimensions.get('window')
 const color1 = '#ecf0f1'
 class mainMenu extends Component {
-    state = {
-        data: [
-            {
-                id: 1,
-                name: 'Pandri',
-                nip: 1234567890,
-                gender: 'Male',
-                jabatan: 'React Native Developer',
-                email: 'pandrir23@gmail.com'
-            },
-            {
-                id: 2,
-                name: 'jhon thor',
-                nip: 1234567890,
-                gender: 'Male',
-                jabatan: 'Android Developer',
-                email: 'jhon@gmail.com'
-            },
-            {
-                id: 3,
-                name: 'Areidra',
-                nip: 1234567890,
-                gender: 'Male',
-                jabatan: 'Backend Developer',
-                email: 'arey@gmail.com'
-            },
-            {
-                id: 4,
-                name: 'jhon doe',
-                nip: 1234567890,
-                gender: 'Male',
-                jabatan: 'UI UX Designer',
-                email: 'jhonDoe@gmail.com'
-            }
-        ]
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: []
+        }
+    }
+
+    componentDidMount = async () => {
+        await axios.get('http://192.168.43.64:9000/data') // change ip address
+            .then(res => {
+                console.warn(res, 'data');
+
+                this.setState({
+                    data: res.data
+                })
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
     render() {
         return (

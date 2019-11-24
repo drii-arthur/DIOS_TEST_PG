@@ -95,6 +95,7 @@ class Form extends Component {
                     <TextInput
                         style={styles.input}
                         placeholder='Masukan Email'
+                        onChangeText={(text) => { this.props.onchange('email', text) }}
                     >
                         <Text>{data.email}</Text>
                     </TextInput>
@@ -103,6 +104,7 @@ class Form extends Component {
                     <TextInput
                         style={styles.input}
                         placeholder='Masukan Gender'
+                        onChangeText={(text) => { this.props.onchange('gender', text) }}
 
                     >
                         <Text>{data.gender}</Text>
@@ -112,22 +114,28 @@ class Form extends Component {
                     <TextInput
                         style={styles.input}
                         placeholder='Masukan Nip'
+                        onChangeText={(text) => { this.props.onchange('nip', text) }}
                     >
                         <Text>{data.nip}</Text>
                     </TextInput>
 
-                    <Text style={{ color: '#0fbcf9' }}>Hobby</Text>
+                    <Text style={{ color: '#0fbcf9' }}>Divisi</Text>
                     <TextInput
                         style={styles.input}
-                        placeholder='Masukan Hobby'
-                    />
+                        placeholder='Masukan Divisi'
+                        onChangeText={(text) => { this.props.onchange('divisi', text) }}
+                    >
+                        <Text>{data.divisi}</Text>
+                    </TextInput>
                 </View>
 
 
                 <LinearGradient
                     style={{ width: 100, justifyContent: 'center', alignItems: 'center', padding: 10, alignSelf: 'flex-end', marginTop: 20, borderTopLeftRadius: 25, borderBottomLeftRadius: 25 }}
                     colors={['#0fbcf9', '#575fcf']}>
-                    <TouchableOpacity style={{ width: 100, justifyContent: 'center', alignItems: 'center' }} >
+                    <TouchableOpacity style={{ width: 100, justifyContent: 'center', alignItems: 'center' }}
+                        onPress={() => { this.props.onsubmit() }}
+                    >
 
                         <Text style={{ color: '#fff', fontWeight: '700' }}>{this.props.title}</Text>
 

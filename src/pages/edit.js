@@ -10,6 +10,7 @@ import {
     Image, ScrollView
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
+import Axios from 'axios'
 import Header from '../components/header'
 import Form from '../components/form'
 const { height, width } = Dimensions.get('window')
@@ -19,14 +20,28 @@ class Edit extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            data: this.props.navigation.getParam('data'),
             formData: {
-                name: '',
-                email: '',
-                nip: '',
-                gender: '',
+                name: this.props.navigation.getParam('data').name,
+                email: this.props.navigation.getParam('data').email,
+                nip: this.props.navigation.getParam('data').nip,
+                gender: this.props.navigation.getParam('data').gender,
+                divisi: this.props.navigation.getParam('data').divisi
 
             },
         }
+    }
+
+    handleSubmit = () => {
+        const data = this.state.formData
+        Axios.patch(`http://192.168.43.64:9000/data/${this.state.data.id}`, data)
+            .then(res => {
+                alert('data berhasil di ubah')
+                this.props.navigation.navigate('MainMenu')
+            })
+            .catch(err => {
+                console.log(err)
+            })
     }
 
     handleChange = (name, value) => {
@@ -37,8 +52,7 @@ class Edit extends Component {
         })
     }
     render() {
-        console.warn(this.state.formData.name)
-        const data = this.props.navigation.getParam('data')
+        const { data } = this.state
         return (
             <LinearGradient
                 colors={['#4c669f', '#3b5998', '#192f6a']}
@@ -46,7 +60,7 @@ class Edit extends Component {
                 <StatusBar backgroundColor='#192f6a' translucent={true} />
                 <Header title='Edit Data' />
 
-                <Form data={data} title='Edit Data' onchange={this.handleChange} />
+                <Form data={data} title='Edit Data' onchange={this.handleChange} onsubmit={this.handleSubmit} />
             </LinearGradient>
 
         )

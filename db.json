@@ -1,0 +1,36 @@
+{
+  "data": [
+    {
+      "name": "tesrtee",
+      "nip": "12346678",
+      "email": "email@gmail.com",
+      "gender": "laki laki",
+      "id": 2,
+      "divisi": "react native developer"
+    },
+    {
+      "name": "Genna Arnli",
+      "nip": "0123456",
+      "email": "garnli0@photobucket.com",
+      "gender": "Female",
+      "id": 3,
+      "divisi": "Backend Developer"
+    },
+    {
+      "name": "don ontohod",
+      "nip": "1234567890",
+      "email": "pandrir23@gmail.com",
+      "gender": "Male",
+      "id": 4,
+      "divisi": "UI UX Designer"
+    },
+    {
+      "name": "muhammad pandriadi",
+      "email": "email@gmail.com",
+      "nip": "1234567890",
+      "gender": "male",
+      "divisi": "react-developer",
+      "id": 6
+    }
+  ]
+}

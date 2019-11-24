@@ -12,12 +12,30 @@ import {
 import Header from '../components/header'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Ionicons'
+import Axios from 'axios'
 
 const color1 = '#ecf0f1'
 const { height, width } = Dimensions.get('window')
 class Profile extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            data: this.props.navigation.getParam('item')
+        }
+    }
+
+    handleDelete = () => {
+        Axios.delete(`http://192.168.43.64:9000/data/${this.state.data.id}`)
+            .then(() => {
+                alert('data berhasil di hapus')
+                this.props.navigation.navigate('MainMenu')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
     render() {
-        const data = this.props.navigation.getParam('item')
+        const { data } = this.state
         return (
             <View style={styles.container}>
                 <StatusBar backgroundColor='#192f6a' translucent={true} />
@@ -50,7 +68,9 @@ class Profile extends Component {
                         <Text style={styles.textBtn}>Edit</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity style={styles.btn}>
+                    <TouchableOpacity style={styles.btn}
+                        onPress={() => { this.handleDelete() }}
+                    >
                         <Icon name='md-trash' size={25} color='red' />
                         <Text style={styles.textBtn}>Delete</Text>
                     </TouchableOpacity>
@@ -65,7 +85,7 @@ class Profile extends Component {
                         </View>
                         <View style={styles.cardDetail}>
                             <Icon name='ios-briefcase' size={24} color='#3c40c6' />
-                            <Text style={{ color: 'grey' }} > {data.jabatan}</Text>
+                            <Text style={{ color: 'grey' }} > {data.divisi}</Text>
                         </View>
                     </View>
 

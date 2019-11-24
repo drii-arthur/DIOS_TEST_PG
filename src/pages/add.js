@@ -12,11 +12,42 @@ import {
 import LinearGradient from 'react-native-linear-gradient'
 import Header from '../components/header'
 import Form from '../components/form'
+import Axios from 'axios'
 const { height, width } = Dimensions.get('window')
 const color1 = '#ecf0f1'
 
 class add extends Component {
-    state = {}
+    constructor(props) {
+        super(props)
+        this.state = {
+            formData: {
+                name: '',
+                email: '',
+                nip: '',
+                gender: '',
+                divisi: ''
+            },
+        }
+    }
+    handleChange = (name, value) => {
+        let newFormData = { ...this.state.formData }
+        newFormData[name] = value
+        this.setState({
+            formData: newFormData
+        })
+    }
+
+    handleSubmit = () => {
+        const data = this.state.formData
+        Axios.post(`http://192.168.43.64:9000/data`, data)
+            .then(res => {
+                console.log(res)
+                alert('cuuk')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+    }
     render() {
         return (
             <LinearGradient
@@ -25,7 +56,7 @@ class add extends Component {
                 <StatusBar backgroundColor='#192f6a' translucent={true} />
                 <Header title='Add Data' />
 
-                <Form title='Add Data' data='' />
+                <Form title='Add Data' data='' onchange={this.handleChange} onsubmit={this.handleSubmit} />
             </LinearGradient>
 
         )

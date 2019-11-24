@@ -43,7 +43,7 @@ class Card extends Component {
 
                                 <View style={styles.wrapperName}>
                                     <Text style={styles.textName}>{item.name}</Text>
-                                    <Text style={styles.textJabatan}>{item.jabatan}</Text>
+                                    <Text style={styles.textJabatan}>{item.divisi}</Text>
                                 </View>
 
                                 <View style={styles.wrapperDetail}>
