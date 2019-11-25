@@ -11,14 +11,32 @@ class mainMenu extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            data: []
+            data: [],
+            search: ''
         }
     }
 
+    updateSearch = search => {
+        if (search === "" || search === null) {
+            this.getData()
+        } else {
+            axios.get(`http://192.168.100.150:3000/data?q=${search}`)
+                .then(res => {
+                    this.setState({ data: res.data })
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+        this.setState({ search })
+    }
     componentDidMount = async () => {
-        await axios.get('http://192.168.43.64:9000/data') // change ip address
+        await this.getData()
+    }
+
+    getData = () => {
+        axios.get('http://192.168.100.150:3000/data') // change host with your ip address
             .then(res => {
-                console.warn(res, 'data');
 
                 this.setState({
                     data: res.data
@@ -40,6 +58,7 @@ class mainMenu extends Component {
                     <TextInput
                         placeholder='Search ...'
                         style={styles.inputSearch}
+                        onChangeText={this.updateSearch}
                     />
                     <Icon name='md-search' size={20} color='grey' style={styles.icon} />
                 </View>
