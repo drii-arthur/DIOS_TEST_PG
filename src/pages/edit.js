@@ -34,7 +34,7 @@ class Edit extends Component {
 
     handleSubmit = () => {
         const data = this.state.formData
-        Axios.patch(`http://192.168.43.64:9000/data/${this.state.data.id}`, data)
+        Axios.patch(`http://192.168.100.150:3000/data/${this.state.data.id}`, data)
             .then(res => {
                 alert('data berhasil di ubah')
                 this.props.navigation.navigate('MainMenu')

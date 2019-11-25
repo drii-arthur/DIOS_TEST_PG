@@ -31,6 +31,11 @@ class mainMenu extends Component {
         this.setState({ search })
     }
     componentDidMount = async () => {
+        this.subs = [
+            this.props.navigation.addListener('willFocus', () => {
+                this.getData()
+            })
+        ]
         await this.getData()
     }
 

@@ -39,7 +39,7 @@ class add extends Component {
 
     handleSubmit = () => {
         const data = this.state.formData
-        Axios.post(`http://192.168.43.64:9000/data`, data)
+        Axios.post(`http://192.168.100.150:3000/data`, data) // change host with your ip address
             .then(res => {
                 console.log(res)
                 alert('cuuk')

@@ -25,7 +25,7 @@ class Profile extends Component {
     }
 
     handleDelete = () => {
-        Axios.delete(`http://192.168.43.64:9000/data/${this.state.data.id}`)
+        Axios.delete(`http://192.168.100.150:3000/data/${this.state.data.id}`) //change host with your ip address
             .then(() => {
                 alert('data berhasil di hapus')
                 this.props.navigation.navigate('MainMenu')
