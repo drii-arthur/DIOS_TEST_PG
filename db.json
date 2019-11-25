@@ -31,6 +31,14 @@
       "gender": "male",
       "divisi": "react-developer",
       "id": 6
+    },
+    {
+      "name": "alvian",
+      "email": "email@gmail.com",
+      "nip": "12346678",
+      "gender": "male",
+      "divisi": "humas",
+      "id": 7
     }
   ]
 }

@@ -7,7 +7,9 @@ import {
     Dimensions,
     TouchableOpacity,
     StatusBar,
-    Image, ScrollView
+    Image,
+    ScrollView,
+    Picker
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -26,37 +28,29 @@ class Form extends Component {
         }
     }
     _handleCamera = () => {
-        const options = {
-            storageOptions: {
-                skipBackup: true,
-                path: 'images',
-            }
-        }
-        ImagePicker.showImagePicker(options, (response) => {
-            console.log('Response = ', response);
-            // if (response.uri) {
-            //     this.setState({
-            //         foto: response.uri,
-            //         isSave: true
-            //     })
-            // }
-            if (response.didCancel) {
-                console.log('User cancelled image picker');
-            } else if (response.error) {
-                console.log('ImagePicker Error: ', response.error);
-            } else if (response.customButton) {
-                console.log('User tapped custom button: ', response.customButton);
-            } else {
-                const source = { uri: response.uri };
+        alert('maaf camera masih crash')
+        // const options = {
+        //     storageOptions: {
+        //         skipBackup: true,
+        //         path: 'images',
+        //     }
+        // }
+        // ImagePicker.showImagePicker(options, (response) => {
+        //     console.log('Response = ', response);
+        //     if (response.didCancel) {
+        //         console.log('User cancelled image picker');
+        //     } else if (response.error) {
+        //         console.log('ImagePicker Error: ', response.error);
+        //     } else if (response.customButton) {
+        //         console.log('User tapped custom button: ', response.customButton);
+        //     } else {
+        //         const source = { uri: response.uri };
 
-                // You can also display the image using data:
-                // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-
-                this.setState({
-                    foto: source,
-                });
-            }
-        });
+        //         this.setState({
+        //             foto: source,
+        //         });
+        //     }
+        // });
     }
     render() {
         const { data } = this.props
@@ -102,6 +96,7 @@ class Form extends Component {
                     </TextInput>
 
                     <Text style={{ color: '#0fbcf9' }}>Gender</Text>
+
                     <TextInput
                         style={styles.input}
                         placeholder='Masukan Gender'
@@ -113,6 +108,7 @@ class Form extends Component {
 
                     <Text style={{ color: '#0fbcf9' }}>Nip</Text>
                     <TextInput
+                        keyboardType='numeric'
                         style={styles.input}
                         placeholder='Masukan Nip'
                         onChangeText={(text) => { this.props.onchange('nip', text) }}

@@ -19,7 +19,7 @@ class Card extends Component {
         return (
             <View style={{ flex: 1, marginTop: 10 }}>
                 <FlatList
-                    style={{ alignSelf: 'center' }}
+                    style={data.length > 1 ? { alignSelf: 'center' } : { alignSelf: 'flex-start' }}
                     data={data}
                     numColumns={2}
                     keyExtractor={(item) => item.id}

@@ -15,13 +15,13 @@ import {
   Text,
   StatusBar,
 } from 'react-native';
-
-
 import {
   createAppContainer,
   createSwitchNavigator
 } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+
+
 import MainMenu from './src/pages/mainMenu'
 import add from './src/pages/add'
 import Profile from './src/pages/profile'
@@ -32,10 +32,6 @@ const AppNavigator = createStackNavigator({
   add: add,
   Profile: Profile,
   Edit: Edit
-  // Soal1: Soal1,
-  // Soal3: Soal3,
-  // Soal4: Soal4,
-  // Soal5 : Soal5
 }, {
   headerMode: 'none'
 })

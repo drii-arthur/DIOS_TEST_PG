@@ -37,16 +37,40 @@ class add extends Component {
         })
     }
 
+    emailRegex = (email) => {
+        //One or more after '@' and minimum domain 2 character
+        let emailRegex = /^[\d\w\._-]+@[a-zA-Z]+\.[a-zA-Z]{2,}$/
+        return emailRegex.test(email)
+    }
+
     handleSubmit = () => {
         const data = this.state.formData
-        Axios.post(`http://192.168.100.150:3000/data`, data) // change host with your ip address
-            .then(res => {
-                console.log(res)
-                alert('cuuk')
-            })
-            .catch(err => {
-                console.log(err)
-            })
+        if (data.name == '') {
+            alert('nama tidak boleh kosong')
+        }
+        else if (!this.emailRegex(data.email)) {
+            alert('email tidak valid')
+        }
+        else if (data.gender == "") {
+            alert('gender tidak boleh kosong')
+        }
+        else if (data.nip == "") {
+            alert('nip tidak boleh kosong')
+        }
+        else if (data.divisi == '') {
+            alert('divisi tidak boleh kosong')
+        }
+
+        else {
+            Axios.post(`http://192.168.100.150:3000/data`, data) // change host with your ip address
+                .then(res => {
+                    alert('data berhasil di tambah')
+                    this.props.navigation.navigate('MainMenu')
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
     }
     render() {
         return (
